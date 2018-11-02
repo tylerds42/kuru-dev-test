@@ -34,7 +34,7 @@ Now modify `.gitignore` file appropriate for Your development environment.
 
 ## Task 2
 
-As You may have noticed the console command `php console.php warm 3` is failing because it cannot access the legacy library located in the `lib` directory.
+As you may have noticed the console command `php console.php warm 3` is failing because it cannot access the legacy library located in the `lib` directory.
 Fix this problem.
 
 ## Task 3
