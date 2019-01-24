@@ -25,6 +25,8 @@ class WarmCommand
 
     public function __invoke($id, OutputInterface $output)
     {
+        include(dirname(__FILE__) . "/../../lib/CacheWarm.php");
+
         $website = $this->websiteManager->getById($id);
         if ($website) {
             $pages = $this->pageManager->getAllByWebsite($website);
