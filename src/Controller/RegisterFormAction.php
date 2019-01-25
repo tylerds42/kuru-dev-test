@@ -5,6 +5,11 @@ namespace Kuru\DevTest\Controller;
 class RegisterFormAction
 {
     public function execute() {
-        require __DIR__ . '/../view/register.phtml';
+
+        if (isset($_SESSION['login'])) {
+            header('Location: '. '/');
+        }else{
+            require __DIR__ . '/../view/register.phtml';
+        }
     }
 }
