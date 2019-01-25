@@ -37,4 +37,11 @@ class PageManager
         $statement->execute();
         return $this->database->lastInsertId();
     }
+    public function updateLastViewed(Page $page){
+       $pageId= $page->getPageId();
+       $date=date('Y-m-d h:i:s');
+        $statement = $this->database->prepare('Update pages SET last_viewed = ? WHERE page_id = ?');
+        $statement->execute(array($date,$pageId));
+        return $this->database->lastInsertId();
+    }
 }

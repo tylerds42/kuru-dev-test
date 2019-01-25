@@ -8,11 +8,13 @@ class Page
     public $page_id;
     public $url;
     public $website_id;
+    public $last_viewed;
     
     public function __construct()
     {
         $this->website_id = intval($this->website_id);
         $this->page_id = intval($this->page_id);
+        $this->last_viewed = $this->last_viewed;
     
     }
 
@@ -39,6 +41,9 @@ class Page
     {
         return $this->website_id;
     }
-    
-    
+
+    public function getLastViewed()
+    {
+        return $this->last_viewed;
+    }
 }
