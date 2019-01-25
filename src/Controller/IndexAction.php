@@ -34,6 +34,30 @@ class IndexAction
         } 
         return [];
     }
+    protected function getPageViews(){
+        if($this->user) {
+
+            return $this->websiteManager->getPagesByUser($this->user);
+
+        }
+        return [];
+    }
+    protected function getLeastRecent(){
+        if($this->user) {
+
+            return $this->websiteManager->getLeastRecent($this->user);
+
+        }
+        return [];
+    }
+    protected function getMostRecent(){
+        if($this->user) {
+
+            return $this->websiteManager->getMostRecent($this->user);
+
+        }
+        return [];
+    }
 
     public function execute()
     {

@@ -36,6 +36,38 @@ class WebsiteManager
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_CLASS, Website::class);
     }
+    public function getPagesByUser(User $user){
+        $userId = $user->getUserId();
+        /** @var \PDOStatement $query */
+        $query = $this->database->prepare('select count(*) from websites as w inner join pages as p on w.website_id=p.website_id where user_id = :user');
+        $query->bindParam(':user', $userId, \PDO::PARAM_INT);
+        $query->execute();
+        $count=$query->fetchColumn();
+
+        return $count;
+    }
+    public function getLeastRecent(User $user){
+
+        $userId = $user->getUserId();
+        /** @var \PDOStatement $query */
+        $query = $this->database->prepare('select p.url,p.last_viewed from websites as w inner join pages as p on w.website_id=p.website_id where user_id = :user ORDER BY p.last_viewed ASC LIMIT 1');
+        $query->bindParam(':user', $userId, \PDO::PARAM_INT);
+        $query->execute();
+        $leastrecent=$query->fetchColumn();
+
+        return $leastrecent;
+    }
+    public function getMostRecent(User $user){
+
+        $userId = $user->getUserId();
+        /** @var \PDOStatement $query */
+        $query = $this->database->prepare('select p.url,p.last_viewed from websites as w inner join pages as p on w.website_id=p.website_id where user_id = :user ORDER BY p.last_viewed DESC LIMIT 1');
+        $query->bindParam(':user', $userId, \PDO::PARAM_INT);
+        $query->execute();
+        $mostrecent=$query->fetchColumn();
+
+        return $mostrecent;
+    }
 
     public function create(User $user, $name, $hostname)
     {
